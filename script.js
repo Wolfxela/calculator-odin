@@ -16,6 +16,7 @@ const buttonMultiply = document.querySelector(".multiply");
 const screenNumberOne = document.querySelector(".firstNumber");
 const screenNumberTwo = document.querySelector(".secondNumber");
 let hasTopNumber = false;
+let hasResult = false;
 
 
 //create a function for each button
@@ -45,7 +46,7 @@ buttonMultiply.addEventListener('click', function(){ calcOperator(4); addOperato
 
 //the clear button will on click clear everything and return a 0 on the screen, and when held will clear the entire calculator
 buttonClear.addEventListener('click',function(){ firstNumber = "0"; secondNumber = 0; resultNumber = 0; screenNumberOne.textContent = ''; screenNumberTwo.textContent = '0'; hasTopNumber = false;});
-buttonEqual.addEventListener('click',function(){calcOperator(operatorCalc); screenNumberTwo.textContent = resultNumber; screenNumberOne.textContent = ''; hasTopNumber = false });
+buttonEqual.addEventListener('click',function(){calcOperator(operatorCalc); screenNumberTwo.textContent = resultNumber; screenNumberOne.textContent = ''; hasTopNumber = false; hasResult = true; firstNumber = "0"; secondNumber = 0; });
 
 
 
@@ -53,6 +54,7 @@ buttonEqual.addEventListener('click',function(){calcOperator(operatorCalc); scre
 //this function will (insert operator here) the 2 numbers together and give a result
 function operatingFunc(operator,number1 = 1,number2 = 1)
 {
+   
     if(operator == 1)
     {
         resultNumber = number1 + number2;
@@ -83,12 +85,22 @@ function operatingFunc(operator,number1 = 1,number2 = 1)
 
 function createFirstNumber(number)
 {
+    if(hasResult == true)
+    {
+        resultNumber = 0;
+        hasResult = false;
+    }
     firstNumber = firstNumber + number;
     screenNumberTwo.textContent = parseInt(firstNumber);
     
 }
 function calcOperator(operatorNumber)
 {
+    if(hasResult == true)
+    {
+        secondNumber = resultNumber;
+        
+    }
     if(hasTopNumber == true)
     {
         operatingFunc(operatorCalc,parseInt(firstNumber),secondNumber);
