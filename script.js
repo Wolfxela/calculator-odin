@@ -67,7 +67,7 @@ function operatingFunc(operator,number1 = 1,number2 = 1)
     }
     else if(operator == 3)
     {
-        resultNumber = number1 / number2;
+        resultNumber = number2 / number1;
         hasTopNumber = false;
         screenNumberOne.textContent = resultNumber
     }
