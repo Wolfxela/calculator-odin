@@ -36,13 +36,16 @@ for(let i = 0; i < numberButtons.length;i++)
    
 }
 //the operator buttons will choose what operator will be chosen to the next number and display it and make the first number into the second number with the correct operator next to it
-buttonPlus.addEventListener('click', function(){ calcOperator(1); addOperatorSymbol("+");})
-buttonMinus.addEventListener('click', function(){ calcOperator(2); addOperatorSymbol("-");})
-buttonDivide.addEventListener('click', function(){ calcOperator(3); addOperatorSymbol("/");})
-buttonMultiply.addEventListener('click', function(){ calcOperator(4); addOperatorSymbol("*");})
+buttonPlus.addEventListener('click', function(){ calcOperator(1); addOperatorSymbol("+");});
+buttonMinus.addEventListener('click', function(){ calcOperator(2); addOperatorSymbol("-");});
+buttonDivide.addEventListener('click', function(){ calcOperator(3); addOperatorSymbol("/");});
+buttonMultiply.addEventListener('click', function(){ calcOperator(4); addOperatorSymbol("*");});
 
 //the equal button will show the 2 numbers at the top with their operator, with the result in the bottom
+
 //the clear button will on click clear everything and return a 0 on the screen, and when held will clear the entire calculator
+buttonClear.addEventListener('click',function(){ firstNumber = "0"; secondNumber = 0; resultNumber = 0; screenNumberOne.textContent = ''; screenNumberTwo.textContent = '0'; hasTopNumber = false;});
+buttonEqual.addEventListener('click',function(){calcOperator(operatorCalc); screenNumberTwo.textContent = resultNumber; screenNumberOne.textContent = ''; hasTopNumber = false });
 
 
 
@@ -93,7 +96,6 @@ function calcOperator(operatorNumber)
         firstNumber = "0";
 
     }
-    console.log("hello")
     operatorCalc = operatorNumber;
     if(resultNumber == 0)
     {

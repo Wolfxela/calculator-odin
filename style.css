@@ -18,7 +18,7 @@ body
     width: 400px;
     height: 600px;
 
-    background-color:#1c1f4d;
+    background-color:#01054e;
  
     border-radius: 20px;
     border-width: 8px;
@@ -45,7 +45,7 @@ body
 }
 .screen
 {
-    background-color: rgba(9, 77, 0, 0.61);
+    background-color: rgb(9, 77, 0);
     margin: 10px;
 
     flex-grow: 4;
@@ -77,7 +77,7 @@ body
     background-color: rgb(255, 255, 255);
     margin: 20px;
     width: 350px;
-    height: 395px;
+    height: 360px;
 
     border-radius: 20px;
     border-width: 8px;
@@ -104,7 +104,7 @@ body
 {
 
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 25px;
 
     flex-grow: 1;
     display: flex;
@@ -123,4 +123,8 @@ body
     border-width: 4px;
 
 
+}
+.operationbtn
+{
+    background-color:#ffd000;
 }
