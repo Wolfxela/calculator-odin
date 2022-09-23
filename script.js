@@ -15,8 +15,10 @@ const buttonMultiply = document.querySelector(".multiply");
 //create a variable for the screen first and second number
 const screenNumberOne = document.querySelector(".firstNumber");
 const screenNumberTwo = document.querySelector(".secondNumber");
+let tempHolder = "";
 let hasTopNumber = false;
 let hasResult = false;
+let hasOperator = false;
 
 
 //create a function for each button
@@ -46,7 +48,7 @@ buttonMultiply.addEventListener('click', function(){ calcOperator(4); addOperato
 
 //the clear button will on click clear everything and return a 0 on the screen, and when held will clear the entire calculator
 buttonClear.addEventListener('click',function(){ firstNumber = "0"; secondNumber = 0; resultNumber = 0; screenNumberOne.textContent = ''; screenNumberTwo.textContent = '0'; hasTopNumber = false;});
-buttonEqual.addEventListener('click',function(){calcOperator(operatorCalc); screenNumberTwo.textContent = resultNumber; screenNumberOne.textContent = ''; hasTopNumber = false; hasResult = true; firstNumber = "0"; secondNumber = 0; });
+buttonEqual.addEventListener('click',function(){ if(resultNumber == 0){resultNumber = parseInt(screenNumberTwo.textContent);} calcOperator(operatorCalc); screenNumberTwo.textContent = resultNumber; screenNumberOne.textContent = ''; hasTopNumber = false; hasResult = true; firstNumber = "0"; secondNumber = 0; });
 
 
 
@@ -69,15 +71,21 @@ function operatingFunc(operator,number1 = 1,number2 = 1)
     }
     else if(operator == 3)
     {
-        resultNumber = number2 / number1;
-        hasTopNumber = false;
-        screenNumberOne.textContent = resultNumber
+       
+            resultNumber = number2 / number1;
+            hasTopNumber = false;
+            screenNumberOne.textContent = resultNumber
+        
+      
     }
     else if(operator == 4)
     {
-        resultNumber = number1 * number2;
-        hasTopNumber = false;
-        screenNumberOne.textContent = resultNumber
+       
+            resultNumber = number1 * number2;
+            hasTopNumber = false;
+            screenNumberOne.textContent = resultNumber
+        
+        
     }
     
 
@@ -96,21 +104,24 @@ function createFirstNumber(number)
 }
 function calcOperator(operatorNumber)
 {
+
     if(hasResult == true)
     {
         secondNumber = resultNumber;
         
     }
-    if(hasTopNumber == true)
+    if(hasTopNumber == true && firstNumber != 0)
     {
+       
         operatingFunc(operatorCalc,parseInt(firstNumber),secondNumber);
         screenNumberTwo.textContent = "0";
         firstNumber = "0";
 
     }
     operatorCalc = operatorNumber;
-    if(resultNumber == 0)
+    if(resultNumber == 0 && firstNumber != 0)
     {
+ 
         screenNumberOne.textContent = parseInt(firstNumber);
         secondNumber = parseInt(firstNumber);
     }
@@ -122,12 +133,27 @@ function calcOperator(operatorNumber)
     screenNumberTwo.textContent = "0";
     hasTopNumber = true;
     firstNumber = "0";
+   
 
   
 
 }
 function addOperatorSymbol(operatorSymbol)
 {
-    screenNumberOne.textContent = screenNumberOne.textContent + ' ' + operatorSymbol;
+
+    
+    if(hasOperator == true)
+    {
+        screenNumberOne.textContent = tempHolder + ' ' + operatorSymbol;
+       
+    }
+    if(hasOperator == false)
+    {
+        tempHolder = screenNumberOne.textContent;
+        screenNumberOne.textContent = screenNumberOne.textContent + ' ' + operatorSymbol;
+        hasOperator = true;
+    }
+    
+    
 }
 
